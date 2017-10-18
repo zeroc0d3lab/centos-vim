@@ -4,7 +4,8 @@ MAINTAINER ZeroC0D3 Team <zeroc0d3.team@gmail.com>
 #-----------------------------------------------------------------------------
 # Set Environment
 #-----------------------------------------------------------------------------
-ENV PATH_HOME=/home/docker \
+ENV VIM_VERSION=8.0.1203 \
+    PATH_HOME=/home/docker \
     PATH_WORKSPACE=/home/docker/workspace
 
 #-----------------------------------------------------------------------------
@@ -12,7 +13,10 @@ ENV PATH_HOME=/home/docker \
 # -) vim
 # -) vundle + themes
 #-----------------------------------------------------------------------------
-RUN git clone https://github.com/vim/vim.git /opt/vim
+RUN curl -sSL https://github.com/vim/vim/archive/v${VIM_VERSION}.zip -o /opt/vim.zip \
+    && cd /opt \
+    && unzip /opt/vim.zip \
+    && mv /opt/vim-${VIM_VERSION} /opt/vim
 
 RUN cd /opt/vim/src \
     && /bin/sh ./configure \
@@ -20,8 +24,9 @@ RUN cd /opt/vim/src \
     && sudo make install \
     && sudo mkdir /usr/share/vim \
     && sudo mkdir /usr/share/vim/vim80/ \
-    && sudo cp -fr /opt/vim/runtime/* /usr/share/vim/vim80/ \
-    && git clone https://github.com/zeroc0d3/vim-ide.git /opt/vim-ide \
+    && sudo cp -fr /opt/vim/runtime/* /usr/share/vim/vim80/
+
+RUN git clone https://github.com/zeroc0d3/vim-ide.git /opt/vim-ide \
     && sudo /bin/sh /opt/vim-ide/step02.sh
 
 RUN git clone https://github.com/dracula/vim.git /opt/vim-themes/dracula \
@@ -29,6 +34,8 @@ RUN git clone https://github.com/dracula/vim.git /opt/vim-themes/dracula \
     && mkdir -p $HOME/.vim/bundle/vim-colors/colors \
     && sudo cp /opt/vim-themes/dracula/colors/dracula.vim $HOME/.vim/bundle/vim-colors/colors/dracula.vim \
     && sudo cp /opt/vim-themes/darcula/colors/darcula.vim $HOME/.vim/bundle/vim-colors/colors/darcula.vim
+
+RUN rm -rf /opt/vim
 
 #-----------------------------------------------------------------------------
 # Set Configuration
