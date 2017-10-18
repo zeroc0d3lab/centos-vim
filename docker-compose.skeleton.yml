@@ -51,5 +51,5 @@ networks:
 # VOLUME SETUP
 #-------------------------------------------------------------------
 volumes:
-  nodejs:
+  vim:
     driver: "local"
