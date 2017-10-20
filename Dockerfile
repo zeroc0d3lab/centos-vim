@@ -76,8 +76,8 @@ RUN cd /usr/local/src \
     && make \
     && cp config.mk.dist auto/config.mk \
     && sudo make install \
-    && mkdir /usr/share/vim \
-    && mkdir /usr/share/vim/vim80/ \
+    && mkdir -p /usr/share/vim \
+    && mkdir -p /usr/share/vim/vim80/ \
     && cp -fr ../runtime/* /usr/share/vim/vim80/
 
 RUN git clone https://github.com/zeroc0d3/vim-ide.git $HOME/vim-ide \
