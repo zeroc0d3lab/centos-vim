@@ -27,9 +27,10 @@ CONSUL_VERSION=1.0.0
 # ==============================================
 #   VIM
 # ==============================================
-VIM_VERSION=8.0.1203
+VIM_VERSION=8.0.1207
 PATH_HOME=/home/docker
 PATH_WORKSPACE=/home/docker/workspace
+PATH_APPLICATION=/home/docker/workspace
 CONSUL_VIM_AGENT=consul
 # CONSUL_VIM_PORT=8500
 # CONSUL_VIM_KEYPREFIX=path/prefix/
