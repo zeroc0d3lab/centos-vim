@@ -28,6 +28,8 @@ services:
       - ${PATH_APPLICATION}:/home/docker/workspace
     environment:
       - VIM_VERSION=${VIM_VERSION}
+      - LUA_VERSION=${LUA_VERSION}
+      - LUAROCKS_VERSION=${LUAROCKS_VERSION}
       - CONSUL_VIM_AGENT=${CONSUL_VIM_AGENT}               # consul agent hostname/IP
       #- CONSUL_VIM_PORT=8500                              # consul agent port
       #- CONSUL_VIM_EFIX=path/prefix/                      # consul key prefix path
