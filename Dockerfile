@@ -45,11 +45,13 @@ RUN yum -y install \
 # Prepare Install Ruby
 # -) copy .zshrc to /root
 # -) copy .bashrc to /root
+# -) copy installation scripts to /opt
 #-----------------------------------------------------------------------------
 COPY ./rootfs/root/.zshrc /root/.zshrc
 COPY ./rootfs/root/.bashrc /root/.bashrc
-COPY ./rootfs/opt/ruby.sh /etc/profile.d/ruby.sh
-# COPY ./rootfs/opt/install_ruby.sh /opt/install_ruby.sh
+COPY ./rootfs/root/ruby.sh /etc/profile.d/ruby.sh
+COPY ./rootfs/root/install_ruby.sh /opt/install_ruby.sh
+COPY ./rootfs/root/reload_shell.sh /opt/reload_shell.sh
 # RUN sudo /bin/sh /opt/install_ruby.sh
 
 #-----------------------------------------------------------------------------
@@ -73,7 +75,7 @@ COPY ./rootfs/root/gems.sh /opt/gems.sh
 #-----------------------------------------------------------------------------
 COPY ./rootfs/opt/install_vim.sh /opt/install_vim.sh
 RUN sudo /bin/sh /opt/install_vim.sh
-    
+
 #-----------------------------------------------------------------------------
 # Set Configuration
 #-----------------------------------------------------------------------------
