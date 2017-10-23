@@ -101,8 +101,7 @@ install_vim() {
       && sudo mkdir -p /usr/share/vim/vim80/ \
       && sudo cp -fr $PATH_HOME/vim/runtime/** /usr/share/vim/vim80/
 
-  git clone https://github.com/zeroc0d3/vim-ide.git $PATH_HOME/vim-ide \
-      && sudo /bin/sh $PATH_HOME/vim-ide/step02.sh
+  curl -sSL https://raw.githubusercontent.com/zeroc0d3/vim-ide/master/step02.sh | sudo bash -s
 
   git clone https://github.com/dracula/vim.git /opt/vim-themes/dracula \
       && git clone https://github.com/blueshirts/darcula.git /opt/vim-themes/darcula \
