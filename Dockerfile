@@ -45,13 +45,13 @@ RUN yum -y install \
 # Prepare Install Ruby
 # -) copy .zshrc to /root
 # -) copy .bashrc to /root
-# -) copy installation scripts to /opt
 #-----------------------------------------------------------------------------
 COPY ./rootfs/root/.zshrc /root/.zshrc
 COPY ./rootfs/root/.bashrc /root/.bashrc
 COPY ./rootfs/opt/ruby.sh /etc/profile.d/ruby.sh
 COPY ./rootfs/opt/install_ruby.sh /opt/install_ruby.sh
 COPY ./rootfs/opt/reload_shell.sh /opt/reload_shell.sh
+# RUN exec $SHELL
 # RUN sudo /bin/sh /opt/install_ruby.sh
 
 #-----------------------------------------------------------------------------
@@ -113,8 +113,7 @@ RUN rm -rf /root/vim \
     && sudo mkdir -p /usr/share/vim/vim80/ \
     && sudo cp -fr /root/vim/runtime/** /usr/share/vim/vim80/
 
-RUN git clone https://github.com/zeroc0d3/vim-ide.git /root/vim-ide \
-    && sudo /bin/sh /root/vim-ide/step02.sh
+RUN curl -sSL https://raw.githubusercontent.com/zeroc0d3/vim-ide/master/step02.sh | sudo bash -s
 
 RUN git clone https://github.com/dracula/vim.git /opt/vim-themes/dracula \
     && git clone https://github.com/blueshirts/darcula.git /opt/vim-themes/darcula \
